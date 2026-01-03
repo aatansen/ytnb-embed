@@ -1,0 +1,7 @@
+[project]
+name = "ytnb-embed"
+version = "0.1.0"
+description = "a simple package to embed youtube video inside notebook"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
