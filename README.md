@@ -1,2 +1,2 @@
 # ytnb-embed
-a simple package to embed youtube video inside notebook
+A simple package to embed youtube video inside notebook

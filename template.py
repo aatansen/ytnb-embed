@@ -28,7 +28,7 @@ list_of_files = [
     f"tests/unit/__init__.py",
     f"tests/integration/__init__.py",
     "requirements.txt",
-    "requirements_dev.txt",
+    "requirements-dev.txt",
     "setup.py",
     "pyproject.toml",
     'setup.cfg',
