@@ -1,27 +1,12 @@
-[project]
-name = "ytnb-embed"
-version = "1.0.0"
-description = "A simple package to embed youtube video inside notebook"
-readme = "README.md"
-requires-python = ">=3.13"
-dependencies = []
+[build-system]
+requires = ['setuptools>=80.9.0', "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.uv.workspace]
-members = [
-    ".",
-]
+[tool.pytest.ini_options]
+testpaths = [
+    "tests"
+    ]
 
-[tool.uv.sources]
-ytnb-embed = { workspace = true }
-
-[dependency-groups]
-dev = [
-    "ensure==1.0.4",
-    "flake8==7.3.0",
-    "mkdocs-material==9.7.1",
-    "mypy==1.19.1",
-    "py-youtube==1.1.7",
-    "pytest==9.0.2",
-    "tox==4.33.0",
-    "ytnb-embed",
-]
+[tool.mypy]
+mypy_path = "src"
+ignore_missing_imports = true
