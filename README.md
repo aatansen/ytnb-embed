@@ -44,7 +44,7 @@ Install `ytnb-embed` using pip:
 
 ### Requirements
 
-- Python 3.9+
+- Python 3.10+
 - Jupyter Notebook or JupyterLab
 
 ## Quick Start
