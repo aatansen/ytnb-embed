@@ -8,86 +8,57 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Build on ${{ matrix.python-version }}
+  deploy:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13"]
-      fail-fast: false
+        python-version: [3.10, 3.11, 3.12, 3.13]
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+    # Checkout the repository
+    - uses: actions/checkout@v6
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
+    # Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ matrix.python-version }}
 
-      - name: Cache pip
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+    # Cache pip packages for faster builds
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
-      - name: Install build & test deps
-        run: |
-          python -m pip install --upgrade pip
-          pip install build twine pytest flake8
-          if [ -f requirements.txt ]; then pip install -r requirements.txt || true; fi
-          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt || true; fi
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest build
+        pip install -r requirements.txt
 
-      - name: Lint (fail on severe errors)
-        run: |
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || true
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    # Lint with flake8 (fail fast on serious errors)
+    - name: Lint with flake8
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-      - name: Run tests
-        run: pytest -q || true
+    # Run tests
+    - name: Test with pytest
+      run: pytest -v
 
-      - name: Build sdist & wheel
-        run: |
-          rm -rf dist build
-          python -m build -o dist/${{ matrix.python-version }}
+    # Build package
+    - name: Build package
+      run: python -m build
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist-${{ matrix.python-version }}
-          path: dist/${{ matrix.python-version }}
-
-  publish:
-    name: Publish to PyPI
-    needs: build
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'release' && github.event.action == 'published' }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: artifacts
-
-      - name: Gather artifacts into dist/
-        run: |
-          mkdir -p dist
-          find artifacts -type f -name "*.whl" -o -name "*.tar.gz" -o -name "*.zip" | while read f; do cp "$f" dist/; done
-          ls -la dist
-
-      - name: Install twine
-        run: python -m pip install --upgrade pip twine
-
-      - name: Publish package to PyPI
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          if [ -z "$(ls -A dist)" ]; then echo "No artifacts found in dist/ — aborting."; exit 1; fi
-          python -m twine upload dist/*
+    # Publish to PyPI (only once, not per Python version)
+    - name: Publish package
+      if: github.run_number == 1 || matrix.python-version == '3.13'
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
