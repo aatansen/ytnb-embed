@@ -8,10 +8,11 @@
 [![Downloads](https://pepy.tech/badge/ytnb-embed)](https://pepy.tech/project/ytnb-embed)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![CI](https://github.com/aatansen/ytnb-embed/actions/workflows/ci.yml/badge.svg)](https://github.com/aatansen/ytnb-embed/actions/workflows/ci.yml)
+[![Documentation](https://img.shields.io/badge/docs-mkdocs-blue.svg)](https://aatansen.github.io/ytnb-embed/)
 
 **A lightweight, privacy-focused Python package for embedding YouTube videos in Jupyter Notebooks**
 
-[Installation](#installation) • [Quick Start](#quick-start) • [Documentation](#usage) • [Contributing](#contributing)
+[Installation](#installation) • [Quick Start](#quick-start) • [Usage](#usage) • [Documentation](https://aatansen.github.io/ytnb-embed/) • [Contributing](#contributing)
 
 </div>
 
