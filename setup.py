@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 long_description = (BASE_DIR / "README.md").read_text(encoding="utf-8")
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 
 REPO_NAME = "ytnb-embed"
 PACKAGE_NAME = "ytnb_embed"
