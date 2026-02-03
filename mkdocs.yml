@@ -1,0 +1,93 @@
+site_name: ytnb-embed Documentation
+site_description: A lightweight, privacy-focused Python package for embedding YouTube videos in Jupyter Notebooks
+site_author: aatansen
+site_url: https://aatansen.github.io/ytnb-embed/
+
+repo_name: aatansen/ytnb-embed
+repo_url: https://github.com/aatansen/ytnb-embed
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: installation.md
+      - Quick Start: quick-start.md
+  - Usage Guide:
+      - Basic Usage: usage/basic.md
+      - Advanced Features: usage/advanced.md
+      - Examples: usage/examples.md
+  - API Reference: api.md
+  - Privacy: privacy.md
+  - Contributing: contributing.md
+  - License: license.md
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/aatansen
+
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/ytnb-embed/
+
+    - icon: fontawesome/brands/git-alt
+      link: https://github.com/aatansen/ytnb-embed
+
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/aatansen
+
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/aatansen
+
+    - icon: fontawesome/brands/dev
+      link: https://dev.to/aatansen
+
+    - icon: fontawesome/brands/medium
+      link: https://medium.com/@aatansen

@@ -2,12 +2,12 @@
 
 <div align="center">
 
-[![PyPI version](https://badge.fury.io/py/ytnb-embed.svg)](https://badge.fury.io/py/ytnb-embed)
+[![PyPI version](https://img.shields.io/pypi/v/ytnb-embed.svg)](https://pypi.org/project/ytnb-embed/)
 [![Python Version](https://img.shields.io/pypi/pyversions/ytnb-embed.svg)](https://pypi.org/project/ytnb-embed/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Downloads](https://pepy.tech/badge/ytnb-embed)](https://pepy.tech/project/ytnb-embed)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![CI](https://github.com/aatansen/ytnb-embed/workflows/CI/badge.svg)](https://github.com/aatansen/ytnb-embed/actions)
+[![CI](https://github.com/aatansen/ytnb-embed/actions/workflows/ci.yml/badge.svg)](https://github.com/aatansen/ytnb-embed/actions/workflows/ci.yml)
 
 **A lightweight, privacy-focused Python package for embedding YouTube videos in Jupyter Notebooks**
 
@@ -107,7 +107,7 @@ Here's a complete example demonstrating common use cases:
 
   ```py
   from ytnb_embed import embed_yt
-  
+
   # Educational content
   print("📚 Python Tutorial:")
   embed_yt("https://www.youtube.com/watch?v=_uQrJ0TkZlc", width=800, height=450)
@@ -167,7 +167,7 @@ result = embed_yt("https://www.youtube.com/watch?v=VIDEO_ID", width=800, height=
 - **Sandboxed iframe** - Videos load in isolated iframe contexts
 - **Strict referrer policy** - `strict-origin-when-cross-origin` prevents data leakage
 
-##  Contributing
+## Contributing
 
 Contributions are welcome and greatly appreciated! Here's how you can help:
 
